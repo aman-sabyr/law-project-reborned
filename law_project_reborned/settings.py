@@ -90,11 +90,11 @@ AUTH_USER_MODEL = 'account.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'law_project_reborned1',
-        'USER': 'gopoland',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': 5432
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': ':7cL$R(?oEo<^QIN',
+        'HOST': '34.118.15.190',
+        'PORT': 5432,
     }
 }
 
