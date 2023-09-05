@@ -6,10 +6,6 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import *
 
 
-def index(request):
-    return render(request, 'index.html')
-
-
 class RegistrationView(APIView):
     def post(self, request):
         data = request.data
@@ -43,20 +39,3 @@ class LogoutView(APIView):
         user = request.user
         Token.objects.filter(user=user).delete()
         return Response('<><><><><><> dude ur passed out :)) <><><><><><>')
-
-
-class HomeView(APIView):
-    """
-        doesn't require permission_classes
-        all processes go through custom view/serializer system
-        view gets info from cookies and extracts token
-        serializer checks if this token exists in DB
-        very stupid system, requires to be remade
-    """
-
-    def get(self, request):
-        data = request.COOKIES
-        serializer = HomeSerializer(data=data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.check(serializer.validated_data)
-            return render(request, 'home.html')
