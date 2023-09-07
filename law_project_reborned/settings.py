@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-uhq&q_jg&21xb@is=n(gjiiju00b%=!ef&0$w8(6p!*n2ikk0q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', '34.116.198.30']
+ALLOWED_HOSTS = ['34.116.198.30']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'account',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -50,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -82,6 +84,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'law_project_reborned.wsgi.application'
 
 AUTH_USER_MODEL = 'account.User'
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 # Database
