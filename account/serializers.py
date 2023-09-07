@@ -5,6 +5,10 @@ from rest_framework.authtoken.models import Token
 User = get_user_model()
 
 
+class LogoutSerializer(serializers.Serializer):
+    "i just need it for drf-yasg"
+
+
 class RegistrationSerializer(serializers.Serializer):
     phone_number = serializers.CharField(max_length=32)
     email = serializers.EmailField(required=True)
