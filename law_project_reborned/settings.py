@@ -59,13 +59,8 @@ REST_FRAMEWORK = {
    'DEFAULT_PERMISSION_CLASSES': (
 
    ),
-   'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
-SPECTACULAR_SETTINGS = {
-    'TITLE': 'Law project',
-
-}
 
 ROOT_URLCONF = 'law_project_reborned.urls'
 
