@@ -1,11 +1,20 @@
+import smtplib
+from email.mime.text import MIMEText
+
 from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.utils.crypto import get_random_string
+from django.core.mail import send_mail
 
 
 class UserManager(BaseUserManager):
     def send_activation_code(self, code, email):
-        msg = f'''yo dude this is ur code {code}'''
+        send_mail(
+            subject='yo bro ur good',
+            message='i know that YOU ARE GOOD',
+            from_email='amansabyr05@gmail.com',
+            recipient_list=[f'{email}', ]
+        )
         return 0
 
     def _create(self, email, password, **extra_fields):
@@ -21,7 +30,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save()
 
-        # sends activation code to whatsapp
+        # sends activation code to email
         self.send_activation_code(email=email, code=activation_code)
 
         return user
