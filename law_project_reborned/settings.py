@@ -95,11 +95,11 @@ AUTH_USER_MODEL = 'account.User'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'newpass1',
-        'HOST': '34.118.6.34',
-        'PORT': 5432,
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT'),
     }
 }
 
@@ -148,9 +148,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.elasticemail.com'
-EMAIL_HOST_USER = 'amansabyr05@gmail.com'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
-EMAIL_PORT = 2525
-EMAIL_HOST_PASSWORD = 'BAFAB64577DDA6F27F1920F8C4DEF61AACC9'
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')

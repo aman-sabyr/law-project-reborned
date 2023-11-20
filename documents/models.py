@@ -8,11 +8,14 @@ User = get_user_model()
 
 class DocumentManager(models.Manager):
 
-    def _create(self, ):
-        pass
+    def _create(self, **extra_fields):
+        extra_fields.update({'slug': get_random_string(7)})
+        document = self.model(extra_fields)
+        document.save()
+        return document
 
-    def create_document(self, ):
-        pass
+    def create_document(self, **extra_fields):
+        return self._create(**extra_fields)
 
 
 class Document(models.Model):
@@ -36,7 +39,8 @@ class ChangeManager(models.Manager):
 
 
 class Change(models.Model):
-    slug = models.SlugField(max_length=5, unique=True, primary_key=True)
+    slug = models.SlugField(max_length=5, unique=True, primary_key=True, verbose_name='change\'s slug')
+    parent_change = models.CharField(max_length=5, verbose_name='slug of the parent\'s change')
     document = models.ForeignKey(Document, on_delete=models.CASCADE, verbose_name='documents slug')
     selected_text = models.TextField(verbose_name='text that should be changed')
     modified_text = models.TextField(verbose_name='text that should be inserted')
